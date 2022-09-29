@@ -34,5 +34,32 @@ A l'exception du sous-réseau 7, pour lequel on a besoin de seulement 5 bits (ca
 
 2 - Afin d'attribuer de manière permanente l'adresse IP 192.168.100.1 à l'interface réseau du réseau interne, il faut taper la commande **sudo nano /etc/netplan/50-cloud-init.yaml** et modifier le fichier de la sorte:
 ![img](img/TP-6_exo3.png)
+
 Ensuite, on peut exécuter la commande **sudo netplan apply** pour prendre en compte ces changements.
+
 ![img](img/TP-6_exo3_2.png)
+
+3 - D'abord on fait une copie du fichier pour en avoir une sauvegarde **sudo cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.bak**.
+Les modifications apportées sont les suivantes:
+
+default-lease-time 120;
+max-lease-time 600;
+authoritative;
+option broadcast-address 192.168.100.255; 
+option domain-name "tpadmin.local"; 
+
+subnet 192.168.100.0 netmask 255.255.255.0 { 
+  range 192.168.100.100 192.168.100.240;
+  option routers 192.168.100.1;
+  option domain-name-servers 192.168.100.1; 
+}
+
+default-lease-time est utilisée si le client ne demande pas de bail spécifique. Cela va "louer" une adresse IP pour 600 secondes si le client ne demande pas de délai spécifique.
+max-lease-time définit le bail le plus long que le serveur peut allouer.
+
+4 - Afin de spécifier l'interface sur laquelle le serveur doit écouter, on modifie le fichier isc-dhcp-server avec **sudo nano /etc/default/isc-dhcp-server**: INTERFACESv4="ens224";
+INTERFACESv6="ens224";
+
+5 - Validation du fichier de configuration avec la commande **sudo dhcpd -t**. Par la suite on redémarre le serveur DHCP avec **sudo systemctl restart isc-dhcp-server** et on vérifie qu'il est actif avec **sudo systemctl status isc-dhcp-server**.
+
+![img](img/TP-6_exo3_3.png)
