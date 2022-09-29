@@ -1,5 +1,6 @@
 # **Exercice 1. Adressage IP (rappels)**
 
+Avec du VSLM:
 On commence par le sous-réseau ayant le plus grand nombre de machines, soit le sous-réseau 3.
 Pour 52 machines(+@réseau+@broadcast), on doit a besoin de 6 bits (car 2^6=64).
 Ce qui donne 32-6=26 => /26.
@@ -16,3 +17,15 @@ A l'exception du sous-réseau 7, pour lequel on a besoin de seulement 5 bits (ca
 | sous-réseau 5  | 172.16.1.0/26    |  172.16.1.63/26 |  172.16.1.1/26 | 172.16.1.62/26 |
 | sous-réseau 2  | 172.16.1.64/26   |   172.16.1.127/26 |  172.16.1.65/26 | 172.16.1.126/26 |
 | sous-réseau 7  | 172.16.1.128/27  |    172.16.1.159/27 |  172.16.1.129/27 | 172.16.1.158/27 |
+
+# **Exercice 2. Préparation de l’environnement**
+
+1 - Sur vsphere, on modifie les paramètres de la VM, on lui ajoute un nouvel adaptateur réseau: ICS_E14_2014. Sur la deuxième VM, on lui ajoute ce même adaptateur réseau. De ce fait, le serveur a accès à Internet et le client à accès à Internet via le serveur.
+
+2 - Avec la commande **ip adrr** on peut vérifier que les interfaces réseaux sont bien présentes. L'interface lo permet de contacter la machine locale sans passer par une interface qui serait accessible de l'extérieur. En d'autres termes, elle permet à la machine de se connecter à elle même sans passer par le réseau. Elle représente la machine elle-même. On peut parler d'adresse de bouclage.
+
+3 - Pour désinstaller le paquet cloud-init, on va utiliser la commande **sudo apt-get purge cloud-init**.
+
+4 - **sudo hostnamectl set-hostname tpadmin.local** va permettre de renommer le serveur. Ensuite, **sudo nano /etc/hosts** pour remplacer l'occurence de l'ancien nom par le nouveau. Enfin, on reboot avec **sudo reboot** pour prendre en compte le changement.
+
+# **Exercice 3. Installation du serveur DHCP**
