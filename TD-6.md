@@ -30,7 +30,7 @@ A l'exception du sous-réseau 7, pour lequel on a besoin de seulement 5 bits (ca
 
 # **Exercice 3. Installation du serveur DHCP**
 
-1 - **isc-dhcp-server** puis **systemctl status isc-dhcp-server**. Cela va afficher Active: Failed ce qui veut dire que le serveur n'a pas réussi à démarrer, ce qui est normal (enfin je crois).
+1 - **isc-dhcp-server** puis **systemctl status isc-dhcp-server**. Cela va afficher Active: Failed ce qui veut dire que le serveur n'a pas réussi à démarrer, ce qui est normal.
 
 2 - Afin d'attribuer de manière permanente l'adresse IP 192.168.100.1 à l'interface réseau du réseau interne, il faut taper la commande **sudo nano /etc/netplan/50-cloud-init.yaml** et modifier le fichier de la sorte:
 ![img](img/TP-6_exo3.png)
@@ -63,3 +63,8 @@ INTERFACESv6="ens224";
 5 - Validation du fichier de configuration avec la commande **sudo dhcpd -t**. Par la suite on redémarre le serveur DHCP avec **sudo systemctl restart isc-dhcp-server** et on vérifie qu'il est actif avec **sudo systemctl status isc-dhcp-server**.
 
 ![img](img/TP-6_exo3_3.png)
+
+6 - Premièrement, il faut suivre les mêmes étapes que pour la partie serveur: **sudo hostname set-hostname client.tpadmin.local** (avec un changement à la main dans le fichier /etc/hosts). On supprime également le paquet cloud-init.
+Deuxièmement, via **hostname** on obtient bien client.tpadmin.local ; via **ip addr**, la carte réseau du client est bien notée DOWN.
+
+7 - 
