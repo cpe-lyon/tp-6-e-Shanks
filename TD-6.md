@@ -29,3 +29,10 @@ A l'exception du sous-réseau 7, pour lequel on a besoin de seulement 5 bits (ca
 4 - **sudo hostnamectl set-hostname tpadmin.local** va permettre de renommer le serveur. Ensuite, **sudo nano /etc/hosts** pour remplacer l'occurence de l'ancien nom par le nouveau. Enfin, on reboot avec **sudo reboot** pour prendre en compte le changement.
 
 # **Exercice 3. Installation du serveur DHCP**
+
+1 - **isc-dhcp-server** puis **systemctl status isc-dhcp-server**. Cela va afficher Active: Failed ce qui veut dire que le serveur n'a pas réussi à démarrer, ce qui est normal (enfin je crois).
+
+2 - Afin d'attribuer de manière permanente l'adresse IP 192.168.100.1 à l'interface réseau du réseau interne, il faut taper la commande **sudo nano /etc/netplan/50-cloud-init.yaml** et modifier le fichier de la sorte:
+![img](img/TP-6_exo3.png)
+Ensuite, on peut exécuter la commande **sudo netplan apply** pour prendre en compte ces changements.
+![img](img/TP-6_exo3_2.png)
