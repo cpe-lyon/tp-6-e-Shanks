@@ -149,3 +149,5 @@ Ensuite on créer une copie du fichier db.127 : **sudo cp /etc/bind/db.127 /etc/
 Zone inverse donc IP inversée (et seulement les 24 premiers bits car /24).
 
 4 - ![img](img/TP-6_exo3_17.png)
+
+5 - marche paaaas
