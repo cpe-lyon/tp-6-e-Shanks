@@ -79,4 +79,13 @@ DHCPACK : réponse du serveur qui contient des paramètres et l'adresse IP du cl
 8 - Sur le serveur, le fichier /var/lib/dhcp/dhcpd.leases est la base de données des concessions du client dhcp. Chaque déclaration de concession inclut une unique adresse IP qui a été attribuée au client.
 La commande **dhcp-lease-list** permet de lister les adresses DHCP attribuées.
 
-9 - 
+9 - **ping 192.168.100.1**. Les deux machines peuvent donc communiquer via leur adresse IP.
+
+10 - **sudo nano /etc/dhcp/dhcpd.conf**: on modifie le fichier avec la configuration suivante:
+
+![img](img/TP-6_exo3_6.png)
+
+Ensuite on redémarre le serveur avec la commande **systemctl restart isc-dhcp-server** pour prendre en compte le changement.
+Enfin, sur le client, on exécute la commande **dhclient -v**. Le resultat :
+
+![img](img/TP-6_exo3_7.png)
