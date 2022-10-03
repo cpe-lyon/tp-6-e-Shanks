@@ -89,3 +89,17 @@ Ensuite on redémarre le serveur avec la commande **systemctl restart isc-dhcp-s
 Enfin, sur le client, on exécute la commande **dhclient -v**. Le resultat :
 
 ![img](img/TP-6_exo3_7.png)
+
+# **Exercice 4. Donner un accès à Internet au client**
+
+1 - **sudo nano /etc/sysctl.conf** pour aller décommenter la ligne net.ipv4.ip_forward=1.
+
+![img](img/TP-6_exo3_8.png)
+
+Les changements sont donc pris en compte immédiatement et la nouvelle valeur a bien été prise en compte.
+
+2 - On va ajouter la règle suivante **sudo iptables --table nat --append POSTROUTING --out-interface ens192 -j MASQUERADE** pour autoriser la traduction d'adresse source (masquerading).
+
+Côté client tout fonctionne :
+
+![img](img/TP-6_exo3_9.png)
