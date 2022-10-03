@@ -103,3 +103,25 @@ Les changements sont donc pris en compte immédiatement et la nouvelle valeur a 
 Côté client tout fonctionne :
 
 ![img](img/TP-6_exo3_9.png)
+
+# **Exercice 5. Installation du serveur DNS**
+
+1 - **sudo apt-get install bind9** pour installer le service et **sudo systemctl status bind9** pour vérifier qu'il est bien actif. Le service est effectivement bien actif (Active: active (running).
+
+2 - A l'aide de la commande **sudo nano /etc/bind/named.conf.options** on va modifier le fichier de configuration comme ci-dessous:
+
+![img](img/TP-6_exo3_10.png)
+
+On relance le serveur bind9 pour prendre en compte les modifications : **sudo systemctl restart bind9**.
+
+3 - Côté client:
+
+![img](img/TP-6_exo3_11.png)
+
+La configuration du DHCP est donc validée.
+
+4 - **sudo apt-get install lynx** pour installer; **lynx** pour lancer.
+
+![img](img/TP-6_exo3_12.png)
+
+WOW
