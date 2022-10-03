@@ -70,3 +70,13 @@ Deuxièmement, via **hostname** on obtient bien client.tpadmin.local ; via **ip 
 7 - D'abord on active la carte réseau du client avec **sudo ip link set ens224 up**. Ensuite, côté client, via la commande **tail -f /var/log/syslog** :
 
 ![img](img/TP-6_exo3_5.png)
+
+DHCPDISCOVER : pour localiser les serveurs DHCP disponibles
+DHCPOFFER : réponse du serveur à un paquet DHCPDISCOVER, qui contient les premiers paramètres
+DHCPREQUEST : requête diverse du client pour par exemple prolonger son bail
+DHCPACK : réponse du serveur qui contient des paramètres et l'adresse IP du client
+
+8 - Sur le serveur, le fichier /var/lib/dhcp/dhcpd.leases est la base de données des concessions du client dhcp. Chaque déclaration de concession inclut une unique adresse IP qui a été attribuée au client.
+La commande **dhcp-lease-list** permet de lister les adresses DHCP attribuées.
+
+9 - 
