@@ -67,4 +67,6 @@ INTERFACESv6="ens224";
 6 - Premièrement, il faut suivre les mêmes étapes que pour la partie serveur: **sudo hostname set-hostname client.tpadmin.local** (avec un changement à la main dans le fichier /etc/hosts). On supprime également le paquet cloud-init.
 Deuxièmement, via **hostname** on obtient bien client.tpadmin.local ; via **ip addr**, la carte réseau du client est bien notée DOWN.
 
-7 - 
+7 - D'abord on active la carte réseau du client avec **sudo ip link set ens224 up**. Ensuite, côté client, via la commande **tail -f /var/log/syslog** :
+
+![img](img/TP-6_exo3_5.png)
