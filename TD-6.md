@@ -125,3 +125,27 @@ La configuration du DHCP est donc validée.
 ![img](img/TP-6_exo3_12.png)
 
 WOW
+
+# **Exercice 6. Configuration du serveur DNS pour la zone tpadmin.local**
+
+1 - **sudo nano /etc/bind/named.conf.local** pour ajouter la configuration suivante:
+
+![img](img/TP-6_exo3_13.png)
+
+2 - Copie du fichier db.local avec la commande **sudo cp /etc/bind/db.local /etc/bind/db.tpadmin.local**. Par la suite on le modifie **sudo nano /etc/bind/db.tpadmin.local** et on le transforme de la sorte:
+
+![img](img/TP-6_exo3_14.png)
+
+J'ai oublié de le faire sur le screen mais il faut incrémenter le champ serial : 2022031003 (la date du jour suivie de 03 car il était à 2 sur le screen).
+
+3 - Afin de convertir une adresse IP en nom, il faut configurer le fichier de zone inverse, /etc/bind/named.conf.local, qui prend la forme suivante:
+
+![img](img/TP-6_exo3_15.png)
+
+Ensuite on créer une copie du fichier db.127 : **sudo cp /etc/bind/db.127 /etc/bind/db.192.168.100** et modifier cette copie de cette façon:
+
+![img](img/TP-6_exo3_16.png)
+
+Zone inverse donc IP inversée (et seulement les 24 premiers bits car /24).
+
+4 - ![img](img/TP-6_exo3_17.png)
