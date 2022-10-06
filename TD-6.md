@@ -150,4 +150,4 @@ Zone inverse donc IP inversée (et seulement les 24 premiers bits car /24).
 
 4 - ![img](img/TP-6_exo3_17.png)
 
-5 - marche paaaas
+5 - Possible de ping les IP des différentes machines, de ping google etc mais pas le hostname d'une autre machine.............
